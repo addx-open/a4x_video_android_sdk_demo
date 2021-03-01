@@ -6,7 +6,7 @@ Addx视频直播 Android Sdk利用了最先进的webrtc技术提供了硬件设�
 
 对于没有研发能力的用户提供了一整套的定制解决方案，对于有研发能力的用户可以自由选择使用部分页面还是部分控件，大大的提升了用户自由定制自由选择的扩展空间<br />
 
-主要包括了以下功能（详细的接口文档请查看）：<br />
+主要包括了以下功能（详细的接口文档请查看<a href='https://www.showdoc.com.cn/AddxAndroidSdk'>addx SDK 文档</a>）：<br />
 
 直播控件<br />
 解码组件<br />
@@ -143,6 +143,6 @@ private void initPlayer() {<br />
 }<br />
 
 <b>最新版本</b><br />
-最新版本（详细的接口文档请查看）：<br />
+最新版本（详细的接口文档请查看<a href='https://www.showdoc.com.cn/AddxAndroidSdk'>addx SDK 文档</a>）：<br />
 
 1.0.0

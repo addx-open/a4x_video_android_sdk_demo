@@ -1,7 +1,7 @@
 <b>Addx视频直播 Android Sdk</b>
 
 
-功能概述
+<b>功能概述</b><br />
 Addx视频直播 Android Sdk利用了最先进的webrtc技术提供了硬件设备直播以及addx功能的接口封装，从不同的层面，加速应用开发过程，
 
 对于没有研发能力的用户提供了一整套的定制解决方案，对于有研发能力的用户可以自由选择使用部分页面还是部分控件，大大的提升了用户自由定制自由选择的扩展空间
@@ -18,7 +18,7 @@ Addx视频直播 Android Sdk利用了最先进的webrtc技术提供了硬件设�
 sdcard回看
 所有功能的addx服务api
 
-<b>接入方法</b>
+<b>接入方法</b><br />
 1.在主build.gradle加入
 
 allprojects {
@@ -84,7 +84,7 @@ variantFilter { variant ->
 configurations {
     compile.exclude group: 'org.jetbrains', module: 'annotations'
 }
-<b>事例：(更多事例请下载demo)</b>
+<b>事例：(更多事例请下载demo)</b><br />
 private Runnable autoPlayRunnable = new Runnable() {
     @Override
  public void run() {

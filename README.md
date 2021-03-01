@@ -22,6 +22,7 @@ sdcard回看
 
 ```groovy
 allprojects {
+		http://49.233.16.190:8081/repository/maven-releases
 		google()
 		jcenter()
 		maven { url "https://jitpack.io" }

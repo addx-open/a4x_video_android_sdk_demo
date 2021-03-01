@@ -18,7 +18,7 @@ Addx视频直播 Android Sdk利用了最先进的webrtc技术提供了硬件设�
 sdcard回看
 所有功能的addx服务api
 
-接入方法
+<b>接入方法</b>
 1.在主build.gradle加入
 
 allprojects {
@@ -84,7 +84,7 @@ variantFilter { variant ->
 configurations {
     compile.exclude group: 'org.jetbrains', module: 'annotations'
 }
-事例：(更多事例请下载demo)
+<b>事例：(更多事例请下载demo)</b>
 private Runnable autoPlayRunnable = new Runnable() {
     @Override
  public void run() {
@@ -155,7 +155,7 @@ private void initPlayer() {
     }
 }
 
-最新版本
+<b>最新版本</b>
 最新版本（详细的接口文档请查看）：
 
 1.0.0

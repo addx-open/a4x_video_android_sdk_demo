@@ -1,4 +1,4 @@
-Addx视频直播 Android Sdk
+<b>Addx视频直播 Android Sdk</b>
 
 
 功能概述

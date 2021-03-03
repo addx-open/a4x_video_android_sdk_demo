@@ -1,7 +1,7 @@
 #  **Addx live video Android Sdk**
 
 ## Functional Overview
-		Addx video live streaming Android Sdk utilizes the most advanced webrtc technology to provide hardware device live streaming and addx function interface packaging, accelerating the application development process from different levels, and providing a complete set of customized solutions for users without R&D capabilities. Users with R&D capabilities can freely choose to use part of the page or part of the control, which greatly enhances the expansion space for users to freely customize and choose freely
+Addx video live streaming Android Sdk utilizes the most advanced webrtc technology to provide hardware device live streaming and addx function interface packaging, accelerating the application development process from different levels, and providing a complete set of customized solutions for users without R&D capabilities. Users with R&D capabilities can freely choose to use part of the page or part of the control, which greatly enhances the expansion space for users to freely customize and choose freely
 
 Mainly includes the following functions (please check the detailed interface documentation[addx SDK documentation](https://www.showdoc.com.cn/AddxAndroidSdk "addx SDK documentation")）：
 

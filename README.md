@@ -1,148 +1,148 @@
-<b>Addx视频直播 Android Sdk</b>
+#  **Addx视频直播 Android Sdk**
 
+## 功能概述
+Addx视频直播 Android Sdk利用了最先进的webrtc技术提供了硬件设备直播以及addx功能的接口封装，从不同的层面，加速应用开发过程，
 
-<b>功能概述</b><br />
-Addx视频直播 Android Sdk利用了最先进的webrtc技术提供了硬件设备直播以及addx功能的接口封装，从不同的层面，加速应用开发过程，<br />
+对于没有研发能力的用户提供了一整套的定制解决方案，对于有研发能力的用户可以自由选择使用部分页面还是部分控件，大大的提升了用户自由定制自由选择的扩展空间
 
-对于没有研发能力的用户提供了一整套的定制解决方案，对于有研发能力的用户可以自由选择使用部分页面还是部分控件，大大的提升了用户自由定制自由选择的扩展空间<br />
+主要包括了以下功能（详细的接口文档请查看[addx SDK 文档](https://www.showdoc.com.cn/AddxAndroidSdk "addx SDK 文档")）：
 
-主要包括了以下功能（详细的接口文档请查看）：<br />
+直播控件
+解码组件
+设备列表
+用户设置
+设备绑定
+设备设置
+相册
+sdcard回看
+所有功能的addx服务api
 
-直播控件<br />
-解码组件<br />
-设备列表<br />
-用户设置<br />
-设备绑定<br />
-设备设置<br />
-相册<br />
-sdcard回看<br />
-所有功能的addx服务api<br />
+## 接入方法
+### 1.在主build.gradle加入
 
-<b>接入方法</b><br />
-1.在主build.gradle加入<br />
+```groovy
+allprojects {
+		maven { url "http://49.233.16.190:8081/repository/maven-releases" }
+		google()
+		jcenter()
+		maven { url "https://jitpack.io" }
+		maven { url 'https://zendesk.jfrog.io/zendesk/repo' }
+		maven { url 'http://developer.huawei.com/repo/' }
+		maven { url 'https://zendesk.jfrog.io/zendesk/repo' }
+}
+```
+### 2.在工程build.gradle加入
+```groovy
 
-allprojects {<br />
-        maven{url 'file:///home/yuanshiyue/addx/addx_video_open_sdk/mavenlibs'}<br />
-        google()<br />
-        jcenter()<br />
-        maven { url "https://jitpack.io" }<br />
-        maven { url 'https://zendesk.jfrog.io/zendesk/repo' }<br />
-        maven { url 'http://developer.huawei.com/repo/' }<br />
-        maven { url 'https://zendesk.jfrog.io/zendesk/repo' }<br />
-    }<br />
-}<br />
-2.在工程build.gradle加入<br />
+defaultConfig {
+	flavorDimensions "versionCode"
+	multiDexEnabled true
+}
+android {
+	buildTypes {
+		params {
+			Map<String, Object> placeHolderMap = new HashMap<>()
+			placeHolderMap.put("XG_ACCESS_ID", "1500010573")
+			placeHolderMap.put("XG_ACCESS_KEY", "A1ML07L4XF4L")
+			placeHolderMap.put("huaweiId", "100926381")
+			placeHolderMap.put("bugsnagKey", "0e1800896236cfa86bd5bece344f7a0e")
+			manifestPlaceholders(placeHolderMap)
+		}
+		debug {
+			initWith params
+		}
+		release {
+			initWith params
+		}
+	}
 
-defaultConfig {<br />
- flavorDimensions "versionCode"<br />
- multiDexEnabled true<br />
-}<br />
-android {<br />
-buildTypes {<br />
-params {<br />
-    Map<String, Object> placeHolderMap = new HashMap<>()<br />
-    placeHolderMap.put("XG_ACCESS_ID", "1500010573")<br />
-    placeHolderMap.put("XG_ACCESS_KEY", "A1ML07L4XF4L")<br />
-    placeHolderMap.put("huaweiId", "100926381")<br />
-    placeHolderMap.put("bugsnagKey", "0e1800896236cfa86bd5bece344f7a0e")<br />
-    manifestPlaceholders(placeHolderMap)<br />
-}<br />
+	variantFilter { variant ->
+		def names = variant.flavors*.name
+		def buildType = variant.buildType.name
+		def name0 = names.get(0)
+		if (buildType.contains("params")) {
+			setIgnore(true)
+			return
+		}
+		println("names" + names + ",name0=" + name0 + ",buildType=" + buildType + ",ignore=false")
+	}
+}
+configurations {
+	compile.exclude group: 'org.jetbrains', module: 'annotations'
+}
+```
+## 事例：(更多事例请下载demo)
+```java
+private Runnable autoPlayRunnable = new Runnable() {
+	@Override
+	public void run() {
+		LogUtils.d(TAG,"initPlayer========autoPlayRunnable");
+		mNoControlAddxVideoView.startPlay();
+	}
+};
+void listDevice() {
+	Subscription subscribe = ApiClient.getInstance()
+	.listDevice(new BaseEntry())
+	.subscribeOn(Schedulers.io())
+	.subscribe(new HttpSubscriber() {
+	@Override
+	public void doOnNext(AllDeviceResponse allDeviceResponse) {
+		mNoControlAddxVideoView.post(()->{
+			LogUtils.d(TAG,"initPlayer========doOnNext");
+			loadding.setVisibility(View.INVISIBLE);
+			if (allDeviceResponse.getResult() < Const.ResponseCode.CODE_OK
+			|| allDeviceResponse.getData() == null
+			|| allDeviceResponse.getData().getList() == null) {
+				ToastUtils.showShort("获取设备失败");
+				return;
+			}
+			LogUtils.d(TAG,"initPlayer========doOnNext===ok");
+			allDevice = allDeviceResponse.getData().getList();
+			DeviceManager.getInstance().putOrUpdate(allDevice);
+			if(allDevice != null && !allDevice.isEmpty()){
+				initPlayer();
+				beginAutoPlay();
+			}
+	});
+}
+@Override
+public void doOnError(Throwable e) {
+	super.doOnError(e);
+	mNoControlAddxVideoView.post(() -> {
+		ToastUtils.showShort("获取设备失败");
+		loadding.setVisibility(View.INVISIBLE);
+	});
+	}
+	});
+	mSubscription.add(subscribe);
+}
 
-debug {<br />
-    initWith params<br />
-}<br />
+protected void beginAutoPlay(){
+	if(mNoControlAddxVideoView != null){
+		mNoControlAddxVideoView.postDelayed(autoPlayRunnable, 400);
+	}
+}
+private void initPlayer() {
+	LogUtils.d(TAG,"initPlayer========");
+	if (mNoControlAddxVideoView != null) {
+	LogUtils.d(TAG,"initPlayer========1111");
+	mNoControlAddxVideoView.setDeviceBean(allDevice.get(0));
+	mNoControlAddxVideoView.init(this);
+	mNoControlAddxVideoView.setMVideoCallBack(new SimpleAddxViewCallBack() {
+		@Override
+		public void onStartPlay() {
+			if(getLifecycle().getCurrentState() == Lifecycle.State.RESUMED){
+			}
+		}
+	});
+	View view = mNoControlAddxVideoView.findViewById(R.id.tv_download_speed);
+	if(view != null){
+		view.setVisibility(View.GONE);
+	}
+	}
+}
+```
 
-release {<br />
-    initWith params<br />
-}<br />
-
-}<br />
-
-variantFilter { variant -><br />
-    def names = variant.flavors*.name<br />
-    def buildType = variant.buildType.name<br />
-    def name0 = names.get(0)<br />
-    if (buildType.contains("params")) {<br />
-        setIgnore(true)<br />
-        return<br />
- }<br />
-    println("names" + names + ",name0=" + name0 + ",buildType=" + buildType + ",ignore=false")<br />
-}<br />
-}<br />
-configurations {<br />
-    compile.exclude group: 'org.jetbrains', module: 'annotations'<br />
-}<br />
-<b>事例：(更多事例请下载demo)</b><br />
-private Runnable autoPlayRunnable = new Runnable() {<br />
-    @Override<br />
- public void run() {<br />
-        LogUtils.d(TAG,"initPlayer========autoPlayRunnable");<br />
- mNoControlAddxVideoView.startPlay();<br />
- }<br />
-};<br />
-void listDevice() {<br />
-    Subscription subscribe = ApiClient.getInstance()<br />
-            .listDevice(new BaseEntry())<br />
-            .subscribeOn(Schedulers.io())<br />
-            .subscribe(new HttpSubscriber<AllDeviceResponse>() {<br />
-                @Override<br />
- public void doOnNext(AllDeviceResponse allDeviceResponse) {<br />
-                    mNoControlAddxVideoView.post(()->{<br />
-                        LogUtils.d(TAG,"initPlayer========doOnNext");<br />
- loadding.setVisibility(View.INVISIBLE);<br />
- if (allDeviceResponse.getResult() < Const.ResponseCode.CODE_OK<br />
- || allDeviceResponse.getData() == null<br />
- || allDeviceResponse.getData().getList() == null) {<br />
-                            ToastUtils.showShort("获取设备失败");<br />
- return;<br />
- }<br />
-                        LogUtils.d(TAG,"initPlayer========doOnNext===ok");<br />
- allDevice = allDeviceResponse.getData().getList();<br />
- DeviceManager.getInstance().putOrUpdate(allDevice);<br />
- if(allDevice != null && !allDevice.isEmpty()){<br />
-                            initPlayer();<br />
- beginAutoPlay();<br />
- }<br />
-                    });<br />
- }<br />
-                @Override<br />
- public void doOnError(Throwable e) {<br />
-                    super.doOnError(e);<br />
- mNoControlAddxVideoView.post(() -> {<br />
-                        ToastUtils.showShort("获取设备失败");<br />
- loadding.setVisibility(View.INVISIBLE);<br />
- });<br />
- }<br />
-            });<br />
- mSubscription.add(subscribe);<br />
-}<br />
-
-protected void beginAutoPlay(){<br />
-    if(mNoControlAddxVideoView != null){<br /><br />
-        mNoControlAddxVideoView.postDelayed(autoPlayRunnable, 400);<br />
- }<br />
-}<br />
-private void initPlayer() {<br />
-    LogUtils.d(TAG,"initPlayer========");<br />
- if (mNoControlAddxVideoView != null) {<br />
-        LogUtils.d(TAG,"initPlayer========1111");<br />
- mNoControlAddxVideoView.setDeviceBean(allDevice.get(0));<br />
- mNoControlAddxVideoView.init(this);<br />
- mNoControlAddxVideoView.setMVideoCallBack(new SimpleAddxViewCallBack() {<br />
-            @Override<br />
- public void onStartPlay() {<br />
-                if(getLifecycle().getCurrentState() == Lifecycle.State.RESUMED){<br />
-                }<br />
-            }<br />
-        });<br /><br />
- View view = mNoControlAddxVideoView.findViewById(R.id.tv_download_speed);<br />
- if(view != null){<br /><br />
-            view.setVisibility(View.GONE);<br />
- }<br />
-    }<br />
-}<br />
-
-<b>最新版本</b><br />
-最新版本（详细的接口文档请查看）：<br />
+最新版本（详细的接口文档请查看[addx SDK 文档](https://www.showdoc.com.cn/AddxAndroidSdk "addx SDK 文档")）：
 
 1.0.0

@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:label,android:allowBackup,android:name,android:icon">
-        <activity android:name=".DeviceListActivity"></activity>
+        <activity android:name=".DeviceListActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"></activity>
         <activity android:name=".MineActivity" />
         <activity android:name=".LibActivity" />
         <activity

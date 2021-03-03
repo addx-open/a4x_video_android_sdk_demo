@@ -37,7 +37,7 @@
         android:id="@+id/back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="返回"></Button>
+        android:text="@string/back"></Button>
     <ProgressBar
         android:id="@+id/pb_loading"
         android:layout_width="26dp"

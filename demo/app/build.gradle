@@ -95,7 +95,7 @@ dependencies {
     implementation 'androidx.multidex:multidex:2.0.1'
 
     //
-    implementation 'com.addx.ai:opensdk:1.0.0'
+    implementation 'com.addx.ai:opensdk:1.0.1'
 //    implementation(name: 'ResModule-debug', ext: 'aar')
 //    implementation(name: 'addxmodel-debug', ext: 'aar')
 //    implementation(name: 'addxnet-debug', ext: 'aar')

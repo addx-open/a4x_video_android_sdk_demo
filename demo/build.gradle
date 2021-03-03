@@ -4,10 +4,6 @@ buildscript {
     repositories {
         google()
         jcenter()
-
-        maven{
-            url 'file:///home/yuanshiyue/addx/addx_video_open_sdk/mavenlibs'
-        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.5.2'
@@ -19,12 +15,9 @@ buildscript {
 
 allprojects {
     repositories {
+        maven { url "http://49.233.16.190:8081/repository/maven-releases" }
         google()
         jcenter()
-
-        maven{
-            url 'file:///home/yuanshiyue/addx/addx_video_open_sdk/mavenlibs'
-        }
         maven { url "https://jitpack.io" }
         maven { url 'https://zendesk.jfrog.io/zendesk/repo' }
         maven { url 'http://developer.huawei.com/repo/' }

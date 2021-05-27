@@ -39,10 +39,10 @@ android {
 	buildTypes {
 		params {
 			Map<String, Object> placeHolderMap = new HashMap<>()
-			placeHolderMap.put("XG_ACCESS_ID", "1500010573")
-			placeHolderMap.put("XG_ACCESS_KEY", "A1ML07L4XF4L")
-			placeHolderMap.put("huaweiId", "100926381")
-			placeHolderMap.put("bugsnagKey", "0e1800896236cfa86bd5bece344f7a0e")
+			placeHolderMap.put("XG_ACCESS_ID", "xxxxxxxxx")
+			placeHolderMap.put("XG_ACCESS_KEY", "xxxxxxxx")
+			placeHolderMap.put("huaweiId", "xxxxxxx")
+			placeHolderMap.put("bugsnagKey", "xxxxxxxxxxxxxx")
 			manifestPlaceholders(placeHolderMap)
 		}
 		debug {

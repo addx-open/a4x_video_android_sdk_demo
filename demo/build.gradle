@@ -15,16 +15,15 @@ buildscript {
 
 allprojects {
     repositories {
-        maven { url "http://49.233.16.190:8081/repository/maven-releases" }
-        google()
-        jcenter()
+        maven { url "http://82.157.61.22:8081/repository/maven-releases" }
         maven { url "https://jitpack.io" }
         maven { url 'https://zendesk.jfrog.io/zendesk/repo' }
-        maven { url 'http://developer.huawei.com/repo/' }
-        maven { url 'https://zendesk.jfrog.io/zendesk/repo' }
+        google()
+        jcenter()
     }
 }
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
-}
+//task clean(type: Delete) {
+//    delete rootProject.buildDirs
+//}
+ext.needDepsLocalModule= false

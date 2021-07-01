@@ -37,9 +37,9 @@ allprojects {
             }
         }
     }
-    implementation 'com.addx.ai:addxvideo:1.0.2'
-    implementation 'com.addx.ai:addxbind:1.0.2'
-    implementation 'com.addx.ai:addxsettings:1.0.2'
+    implementation 'com.addx.ai:addxvideo:1.0.3'
+    implementation 'com.addx.ai:addxbind:1.0.3'
+    implementation 'com.addx.ai:addxsettings:1.0.4'
 ```
 ## 2. 事例：(更多事例请下载demo)
 ```

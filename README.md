@@ -43,9 +43,9 @@ allprojects {
             }
         }
     }
-    implementation 'com.addx.ai:addxvideo:1.0.2'
-    implementation 'com.addx.ai:addxbind:1.0.2'
-    implementation 'com.addx.ai:addxsettings:1.0.2'
+    implementation 'com.addx.ai:addxvideo:1.0.3'
+    implementation 'com.addx.ai:addxbind:1.0.3'
+    implementation 'com.addx.ai:addxsettings:1.0.4'
 ```
 ## Example: (For more examples, please download the demo)
 ```java

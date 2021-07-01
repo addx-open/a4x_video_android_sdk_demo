@@ -39,6 +39,6 @@ allprojects {
 ```
 AddxContext.getInstance().initA4xSdk(getApplicationContext(), "netvue", "zh", "CN", AddxContext.BuildEnv.STAGING, AddxNode.STRAGE_NODE_CN, token, null);
 ```
-最新版本（详细的接口文档请查看[addx SDK 文档](https://www.showdoc.com.cn/AddxAndroidSdk "addx SDK 文档")）：
+最新版本（详细的接口文档请查看[addx SDK 文档](https://www.showdoc.com.cn/A4XAndroidSdk "addx SDK 文档")）：
 
 1.0.0

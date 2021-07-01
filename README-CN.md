@@ -1,22 +1,16 @@
 #  **Addx视频直播 Android Sdk**
 
-## 功能概述
-Addx视频直播 Android Sdk利用了最先进的webrtc技术提供了硬件设备直播以及addx功能的接口封装，从不同的层面，加速应用开发过程，
 
-对于没有研发能力的用户提供了一整套的定制解决方案，对于有研发能力的用户可以自由选择使用部分页面还是部分控件，大大的提升了用户自由定制自由选择的扩展空间
+（详细的接口文档请查看[addx SDK 文档](https://www.showdoc.com.cn/AddxAndroidSdk "addx SDK 文档")）：
 
-主要包括了以下功能（详细的接口文档请查看[addx SDK 文档](https://www.showdoc.com.cn/AddxAndroidSdk "addx SDK 文档")）：
-
-直播控件
-解码组件
-设备列表
-用户设置
-设备绑定
-设备设置
-相册
-sdcard回看
-所有功能的addx服务api
-
+## 获取demo
+```
+git clone https://github.com/addx-open/addx_video_open_sdk.git
+cd addx_video_open_sdk
+git submodule add  https://github.com/addx-open/android-demo.git  *your dir*/addx_video_open_sdk/demo/android-demo
+git submodule init
+git submodule update
+```
 ## 接入方法
 **1.在主build.gradle加入**
 ```

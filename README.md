@@ -2,7 +2,7 @@
 
 (please check the detailed interface documentation[addx SDK documentation](https://www.showdoc.com.cn/AddxAndroidSdk "addx SDK documentation")）：
 
-## prepare code
+## get demo code
 ```
 git clone https://github.com/addx-open/addx_video_open_sdk.git
 cd addx_video_open_sdk

@@ -1,7 +1,7 @@
 #  **Addx视频直播 Android Sdk**
 
 
-（详细的接口文档请查看[addx SDK 文档](https://www.showdoc.com.cn/AddxAndroidSdk "addx SDK 文档")）：
+（详细的接口文档请查看[addx SDK 文档](https://www.showdoc.com.cn/A4XAndroidSdk "addx SDK 文档")）：
 
 ## 获取demo
 ```

@@ -1,6 +1,6 @@
 #  **Addx live video Android Sdk**
 
-(please check the detailed interface documentation[addx SDK documentation](https://www.showdoc.com.cn/AddxAndroidSdk "addx SDK documentation")）：
+(please check the detailed interface documentation[addx SDK documentation](https://www.showdoc.com.cn/A4XAndroidSdk "addx SDK documentation")）：
 
 ## get demo code
 ```

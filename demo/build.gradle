@@ -27,3 +27,7 @@ allprojects {
 //    delete rootProject.buildDirs
 //}
 ext.needDepsLocalModule= false
+
+ext.addxvideo_lib_version='1.0.27'
+ext.addxbind_lib_version='1.0.27'
+ext.addxsettings_lib_version='1.0.27'

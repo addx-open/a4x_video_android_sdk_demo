@@ -1,6 +1,6 @@
 #  **Addx live video Android Sdk**
 
-(please check the detailed interface documentation[addx SDK documentation](https://www.showdoc.com.cn/A4XAndroidSdk "addx SDK documentation")）：
+(please check the detailed interface documentation[addx SDK documentation](https://github.com/addx-open/addx_video_open_sdk "addx SDK documentation")）：
 
 ## get demo code
 ```
@@ -40,6 +40,6 @@ allprojects {
 AddxContext.getInstance().initA4xSdk(getApplicationContext(), "netvue", "zh", "CN", AddxContext.BuildEnv.STAGING, AddxNode.STRAGE_NODE_CN, token, null);
 ```
 
-The latest version (for detailed interface documentation, please refer to [addx SDK documentation](https://www.showdoc.com.cn/A4XAndroidSdk "addx SDK documentation"))：
+The latest version (for detailed interface documentation, please refer to [addx SDK documentation](https://github.com/addx-open/addx_video_open_sdk "addx SDK documentation"))：
 
 1.0.0

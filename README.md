@@ -35,6 +35,9 @@ allprojects {
     implementation 'com.addx.ai:addxbind:1.0.27'
     implementation 'com.addx.ai:addxsettings:1.0.27'
 ```
+**3. your apptheme need to extends Theme.MaterialComponents.* for example  Theme.MaterialComponents.Light.NoActionBar
+```
+```
 ## Example: (For more examples, please download the demo)
 ```java
 AddxContext.getInstance().initA4xSdk(getApplicationContext(), "netvue", "zh", "CN", AddxContext.BuildEnv.STAGING, AddxNode.STRAGE_NODE_CN, token, null);

@@ -11,6 +11,7 @@ git submodule add  https://github.com/addx-open/android-demo.git  *your dir*/add
 git submodule init
 git submodule update
 ```
+
 ## 接入方法
 **1.在主build.gradle加入**
 ```
@@ -34,6 +35,9 @@ allprojects {
     implementation 'com.addx.ai:addxvideo:1.0.3'
     implementation 'com.addx.ai:addxbind:1.0.3'
     implementation 'com.addx.ai:addxsettings:1.0.4'
+```
+**3. apptheme需要继承自Theme.MaterialComponents.*
+```
 ```
 ## 2. 事例：(更多事例请下载demo)
 ```

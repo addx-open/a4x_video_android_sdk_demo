@@ -1,4 +1,4 @@
-#  **Addx live video Android Sdk**
+#  **Addx Android Sdk**
 
 (please check the detailed interface documentation[addx SDK documentation](https://docs.vicoo.tech/#/app/androidSdk "addx SDK documentation")）：
 
@@ -31,16 +31,17 @@ allprojects {
             }
         }
     }
-    implementation 'com.addx.ai:addxvideo:1.0.27'
-    implementation 'com.addx.ai:addxbind:1.0.27'
-    implementation 'com.addx.ai:addxsettings:1.0.27'
+    implementation 'com.addx.ai:addxvideo:1.0.68'
+    implementation 'com.addx.ai:addxbind:1.0.68'
+    implementation 'com.addx.ai:addxsettings:1.0.68'
+    implementation 'com.addx.ai:theme2:1.0.68'
 ```
 **3. your apptheme need to extends Theme.MaterialComponents.* for example  Theme.MaterialComponents.Light.NoActionBar
 ```
 ```
 ## Example: (For more examples, please download the demo)
 ```java
-AddxContext.getInstance().initA4xSdk(getApplicationContext(), "netvue", "zh", "CN", AddxContext.BuildEnv.STAGING, AddxNode.STRAGE_NODE_CN, token, null);
+A4xContext.getInstance().initA4xSdk(getApplicationContext(), "netvue", "zh", "CN", AddxContext.BuildEnv.STAGING, AddxNode.STRAGE_NODE_CN, token, null);
 ```
 
 The latest version (for detailed interface documentation, please refer to [addx SDK documentation](https://docs.vicoo.tech/#/app/androidSdk "addx SDK documentation"))：

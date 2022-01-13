@@ -6,7 +6,7 @@
 ```
 git clone https://github.com/addx-open/addx_video_open_sdk.git
 cd addx_video_open_sdk
-git submodule add  https://github.com/addx-open/android-demo.git  *your dir*/addx_video_open_sdk/demo/android-demo
+git submodule add  https://github.com/addx-open/android-demo.git  ./demo/android-demo
 git submodule init
 git submodule update
 ```

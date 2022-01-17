@@ -28,6 +28,7 @@ allprojects {
 //}
 ext.needDepsLocalModule= false
 
-ext.addxvideo_lib_version='1.0.28'
-ext.addxbind_lib_version='1.0.28'
-ext.addxsettings_lib_version='1.0.28'
+ext.addxvideo_lib_version='1.0.68'
+ext.addxbind_lib_version='1.0.68'
+ext.addxsettings_lib_version='1.0.68'
+ext.theme2_lib_version='1.0.68'

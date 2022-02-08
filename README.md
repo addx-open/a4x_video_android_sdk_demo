@@ -4,8 +4,8 @@
 
 ## get demo code
 ```
-git clone https://github.com/addx-open/addx_video_open_sdk.git
-cd addx_video_open_sdk
+git clone https://github.com/addx-open/a4x_video_android_sdk_demo.git
+cd a4x_video_android_sdk_demo
 git submodule add  https://github.com/addx-open/android-demo.git  ./demo/android-demo
 git submodule init
 git submodule update

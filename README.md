@@ -31,10 +31,10 @@ allprojects {
             }
         }
     }
-    implementation 'com.addx.ai:addxvideo:1.0.92'
-    implementation 'com.addx.ai:addxbind:1.0.92'
-    implementation 'com.addx.ai:addxsettings:1.0.92'
-    implementation 'com.addx.ai:theme2:1.0.92'
+    implementation 'com.addx.ai:addxvideo:1.2.0_beta'
+    implementation 'com.addx.ai:addxbind:1.2.0_beta'
+    implementation 'com.addx.ai:addxsettings:1.2.0_beta'
+    implementation 'com.addx.ai:theme2:1.2.0_beta'
 ```
 **3. your apptheme need to extends Theme.MaterialComponents.* for example  Theme.MaterialComponents.Light.NoActionBar
 ```
@@ -46,4 +46,4 @@ A4xContext.getInstance().initA4xSdk(getApplicationContext(), "netvue", "zh", "CN
 
 The latest version (for detailed interface documentation, please refer to [addx SDK documentation](https://docs.vicoo.tech/#/app/androidSdk "addx SDK documentation"))：
 
-1.0.0
+1.2.0

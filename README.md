@@ -34,7 +34,7 @@ allprojects {
     implementation 'com.addx.ai:addxvideo:1.2.0_beta'
     implementation 'com.addx.ai:addxbind:1.2.0_beta'
     implementation 'com.addx.ai:addxsettings:1.2.0_beta'
-    implementation 'com.addx.ai:theme2:1.2.0_beta'
+    implementation 'com.addx.ai:thememain:1.2.0_beta'
 ```
 **3. your apptheme need to extends Theme.MaterialComponents.* for example  Theme.MaterialComponents.Light.NoActionBar
 ```

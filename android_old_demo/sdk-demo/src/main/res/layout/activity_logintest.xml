@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.addx.ai.demo.Logintest"
+    android:paddingTop="@dimen/dp_60"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </TextView>
+    <TextView
+        android:id="@+id/id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </TextView>
+    <TextView
+        android:id="@+id/email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </TextView>
+    <TextView
+        android:id="@+id/account"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </TextView>
+    <TextView
+        android:id="@+id/token"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </TextView>
+
+    <Button
+        android:id="@+id/back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/back"></Button>
+    <ProgressBar
+        android:id="@+id/pb_loading"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        android:indeterminateBehavior="repeat"
+        android:indeterminateTint="@color/theme_color"
+        android:indeterminateDuration="1200"
+        android:indeterminateDrawable="@drawable/live_progress_bar"
+        android:layout_gravity="center"
+        android:layout_marginVertical="@dimen/dp_210"
+        android:visibility="invisible" />
+</LinearLayout>

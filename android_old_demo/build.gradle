@@ -1,0 +1,45 @@
+buildscript {
+    ext.kotlin_version = '1.4.32'
+    ext.opensdk_plugin_upload_lib_version = '0.0.51'
+    ext.opensdk_plugin_lib_version = '0.0.51'
+//    apply from: "${rootDir}/ResModule/project_depslib_version.gradle"
+    repositories {
+        mavenCentral()
+        maven { url 'http://82.157.61.22:8081/repository/maven-releases' }
+        // maven{url 'file:///home/yuanshiyue/addx/addx_video_open_sdk/mavenlibs'}
+        jcenter()
+        google()
+        maven { url 'https://developer.huawei.com/repo/' }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.0.0'
+        classpath 'org.greenrobot:greendao-gradle-plugin:3.3.0'
+        classpath 'com.google.gms:google-services:4.3.3'
+        classpath 'com.bugsnag:bugsnag-android-gradle-plugin:4.7.5'
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.huawei.agconnect:agcp:1.6.0.300'
+//        classpath "com.addx.ai:opensdk_plugin:$opensdk_plugin_lib_version"
+    }
+}
+allprojects {
+    repositories {
+        flatDir {
+            dirs 'libs'
+            dirs 'libs', '../libs'
+        }
+        maven { url 'http://82.157.61.22:8081/repository/maven-releases' }
+        // maven{url 'file:///home/yuanshiyue/addx/addx_video_open_sdk/mavenlibs'}
+        google()
+        jcenter()
+        maven { url 'https://jitpack.io' }
+        maven { url 'https://zendesk.jfrog.io/zendesk/repo' }
+        maven { url 'https://developer.huawei.com/repo/' }
+    }
+}
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+

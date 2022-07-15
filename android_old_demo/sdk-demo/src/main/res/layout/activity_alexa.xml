@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="@dimen/dp_60"
+        tools:context=".MainActivity">
+        <LinearLayout
+            android:id="@+id/demolist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="sdk UI调用"
+                android:gravity="center"
+                />
+            <Button
+                android:id="@+id/toAuthorization"
+                android:layout_width="match_parent"
+                android:onClick="clicktoAuthorization"
+                android:layout_height="wrap_content"
+                android:text="跳转授权界面（这个界面需要从 alexa app 跳转过来功能才会生效）" />
+
+            <Button
+                android:id="@+id/tobind"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="clicktoAlexa"
+                android:text="跳转绑定界面" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="sdk 接口调用"
+                android:gravity="center"
+                />
+            <Button
+                android:id="@+id/authorization"
+                android:layout_width="match_parent"
+                android:onClick="clickAuthorization"
+                android:layout_height="wrap_content"
+                android:text="授权" />
+
+            <Button
+                android:id="@+id/bind"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="clickBind"
+                android:text="跳转 ALEXA 绑定" />
+
+            <Button
+                android:id="@+id/bindResult"
+                android:layout_width="match_parent"
+                android:onClick="clickBindResult"
+                android:layout_height="wrap_content"
+                android:text="获取绑定结果" />
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

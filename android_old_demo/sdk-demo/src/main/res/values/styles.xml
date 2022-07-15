@@ -1,0 +1,15 @@
+<resources>
+
+    <!-- Base application theme. -->
+<!--    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">-->
+<!--        &lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+<!--        <item name="colorPrimary">@color/colorPrimary</item>-->
+<!--        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
+<!--        <item name="colorAccent">@color/colorAccent</item>-->
+<!--    </style>-->
+
+    <!--此语言仅仅支持英文-->
+    <style name="com_a4x_activity_theme" parent="com_a4x_activity_theme_base">
+        <item name="android:fontFamily">@font/bebas_neue</item>
+    </style>
+</resources>

@@ -1,0 +1,28 @@
+<resources>
+      <string name="app_name">addxdemo</string>
+      <string name="login">登录</string>
+      <string name="nocontrollive">无控制直播</string>
+      <string name="controllive">直播</string>
+      <string name="devicelist">设备列表</string>
+    <string name="customplayerlist">自定义player列表</string>
+      <string name="library">相册</string>
+      <string name="devicesetting">设备设置</string>
+      <string name="usersetting">用户设置</string>
+      <string name="devicebind">设备绑定</string>
+      <string name="all">完整app</string>
+      <string name="back">返回</string>
+      <string name="scan_friend_qr">添加好友设备</string>
+    <string name="demo_video_list">Video List</string>
+      <string name="logout_success">退出登录成功</string>
+    <string name="shared_request_success">分享请求已发出</string>
+    <string name="shared_request_failed">分享请求未发出</string>
+    <string name="login_failed">登录失败</string>
+    <string name="login_sccessful_sdk">登录成功</string>
+    <string name="no_data">无数据</string>
+    <string name="demo_query_shared_list">查询分享设备的请求</string>
+    <string name="sdcardvideo">sdcard回看</string>
+    <string name="already_login">已登录</string>
+    <string name="change_theme">更换主题</string>
+    <string name="no_sdcard_or_not_support">SD卡不存在</string>
+    <string name="only_support_one">仅支持选中一条</string>
+</resources>

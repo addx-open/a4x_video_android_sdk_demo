@@ -3,14 +3,6 @@
 
 （详细的接口文档请查看[addx SDK 文档](https://www.showdoc.com.cn/A4XAndroidSdk "addx SDK 文档")）：
 
-## 获取demo
-```
-git clone https://github.com/addx-open/addx_video_open_sdk.git
-cd addx_video_open_sdk
-git submodule add  https://github.com/addx-open/android-demo.git  *your dir*/addx_video_open_sdk/demo/android-demo
-git submodule init
-git submodule update
-```
 
 ## 接入方法
 **1.在主build.gradle加入**

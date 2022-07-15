@@ -2,14 +2,6 @@
 
 (please check the detailed interface documentation[addx SDK documentation](https://docs.vicoo.tech/#/app/androidSdk "addx SDK documentation")）：
 
-## get demo code
-```
-git clone https://github.com/addx-open/a4x_video_android_sdk_demo.git
-cd a4x_video_android_sdk_demo
-git submodule add  https://github.com/addx-open/android-demo.git  ./demo/android-demo
-git submodule init
-git submodule update
-```
 ## Access method
 ### 1.Join in the main build.gradle
 
@@ -36,7 +28,12 @@ allprojects {
     implementation 'com.addx.ai:addxsettings:1.2.0_beta'
     implementation 'com.addx.ai:thememain:1.2.0_beta'
 ```
-**3. your apptheme need to extends Theme.MaterialComponents.* for example  Theme.MaterialComponents.Light.NoActionBar
+### 3.Join in gradle.properties
+```groovy
+android.useAndroidX=true
+android.enableJetifier=true
+```
+**4. your apptheme need to extends Theme.MaterialComponents.* for example  Theme.MaterialComponents.Light.NoActionBar
 ```
 ```
 ## Example: (For more examples, please download the demo)

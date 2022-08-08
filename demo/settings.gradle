@@ -1,3 +1,0 @@
-include ':android-demo'
-project(':android-demo').projectDir = new File(rootDir, 'android-demo/')
-rootProject.name='demo'

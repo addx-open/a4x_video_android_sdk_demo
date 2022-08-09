@@ -23,10 +23,10 @@ allprojects {
             }
         }
     }
-    implementation 'com.addx.ai:addxvideo:1.2.0_beta'
-    implementation 'com.addx.ai:addxbind:1.2.0_beta'
-    implementation 'com.addx.ai:addxsettings:1.2.0_beta'
-    implementation 'com.addx.ai:thememain:1.2.0_beta'
+    implementation 'com.addx.ai:addxvideo:1.5.3_beta'
+    implementation 'com.addx.ai:addxbind:1.5.3_beta'
+    implementation 'com.addx.ai:addxsettings:1.5.3_beta'
+    implementation 'com.addx.ai:thememain:1.5.3_beta'
 ```
 ### 3.Join in gradle.properties
 ```groovy

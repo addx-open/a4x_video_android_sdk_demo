@@ -9,23 +9,7 @@
         android:id="@+id/zoom_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <RelativeLayout
-                android:id="@+id/surface_container"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center" />
-
-            <ImageView
-                android:id="@+id/thumbImage"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="fitXY" />
-        </FrameLayout>
+        <include layout="@layout/include_player_surface_and_thumb"></include>
     </com.ai.addxvideo.addxvideoplay.view.ZoomView>
 
 
@@ -156,7 +140,7 @@
         android:layout_width="match_parent"
         android:layout_margin="20dp"
         android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:padding="10dp"
         android:layout_alignParentBottom="true"
         android:background="@drawable/white_bg_radius_12"

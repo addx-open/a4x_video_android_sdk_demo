@@ -2,33 +2,16 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/rl_webrtc_full"
+    android:id="@+id/rl_video_all_container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/black">
 
     <com.ai.addxvideo.addxvideoplay.view.ZoomView
         android:id="@+id/zoom_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <RelativeLayout
-                android:id="@+id/surface_container"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center" />
-
-            <ImageView
-                android:id="@+id/thumbImage"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="fitXY"
-                android:src="@mipmap/bind_page_3_bottom"
-                android:visibility="gone"/>
-        </FrameLayout>
+        <include layout="@layout/include_player_surface_and_thumb"></include>
     </com.ai.addxvideo.addxvideoplay.view.ZoomView>
 
     <View
@@ -94,7 +77,7 @@
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:layout_marginTop="@dimen/dp_24"
-        android:layout_marginLeft="@dimen/dp_30">
+        android:layout_marginStart="@dimen/dp_30">
 
         <ImageView
             android:id="@+id/back"
@@ -115,41 +98,6 @@
         android:paddingStart="@dimen/dp_30"
         android:paddingEnd="@dimen/dp_20">
 
-
-<!--        <LinearLayout-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:gravity="center_vertical"-->
-<!--            android:orientation="horizontal"-->
-<!--            app:layout_constraintRight_toRightOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent">-->
-
-<!--            <ImageView-->
-<!--                android:id="@+id/iv_wifi"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginLeft="@dimen/dp_30"-->
-<!--                android:src="@drawable/device_signal_level" />-->
-<!--            <TextView-->
-<!--                android:id="@+id/tv_download_speed"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginEnd="@dimen/dp_5"-->
-<!--                android:layout_weight="1"-->
-<!--                android:gravity="center_vertical"-->
-<!--                android:textColor="#ffffff"-->
-<!--                android:textSize="12sp"-->
-<!--                tools:text="123 k/s" />-->
-
-<!--            <com.ai.addxbase.view.BatteryView-->
-<!--                android:id="@+id/iv_power"-->
-<!--                android:layout_width="20.@dimen/dp_5"-->
-<!--                android:layout_height="11dp"-->
-<!--                android:layout_marginEnd="@dimen/dp_4"-->
-<!--                android:src="@drawable/device_power_level_vertical" />-->
-
-<!--        </LinearLayout>-->
-
         <LinearLayout
             android:id="@+id/rl_full_top"
             android:layout_width="match_parent"
@@ -162,13 +110,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_30"
                 android:layout_centerVertical="true"
-                android:gravity="center_vertical|right">
+                android:gravity="center_vertical|end">
 
                 <ImageView
                     android:id="@+id/iv_wifi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dp_30"
+                    android:layout_marginStart="@dimen/dp_30"
                     android:src="@mipmap/wifi_white"/>
 
                 <TextView
@@ -188,25 +136,25 @@
                     android:padding="@dimen/dp_5"
                     android:textColor="@color/white"
                     android:text="@string/ratio_720p"
-                    android:layout_marginRight="@dimen/dp_24" />
+                    android:layout_marginEnd="@dimen/dp_24" />
                 <ImageView
                     android:id="@+id/fullscreen_more"
                     android:layout_width="@dimen/dp_30"
                     android:layout_height="@dimen/dp_30"
-                    android:layout_marginRight="@dimen/dp_30"
+                    android:layout_marginEnd="@dimen/dp_30"
                     android:padding="@dimen/dp_4"
                     android:scaleType="fitCenter"
                     android:src="@mipmap/more"
                     app:tint="@color/tint_white_theme" />
-<!--                <ImageView-->
-<!--                    android:id="@+id/iv_rocker_auto"-->
-<!--                    android:layout_width="@dimen/dp_30"-->
-<!--                    android:layout_height="@dimen/dp_30"-->
-<!--                    android:layout_marginRight="@dimen/dp_15"-->
-<!--                    android:padding="@dimen/dp_4"-->
-<!--                    android:scaleType="fitCenter"-->
-<!--                    android:src="@mipmap/sport_track_move"-->
-<!--                    app:tint="@color/tint_white_theme" />-->
+                <!--                <ImageView-->
+                <!--                    android:id="@+id/iv_rocker_auto"-->
+                <!--                    android:layout_width="@dimen/dp_30"-->
+                <!--                    android:layout_height="@dimen/dp_30"-->
+                <!--                    android:layout_marginRight="@dimen/dp_15"-->
+                <!--                    android:padding="@dimen/dp_4"-->
+                <!--                    android:scaleType="fitCenter"-->
+                <!--                    android:src="@mipmap/sport_track_move"-->
+                <!--                    app:tint="@color/tint_white_theme" />-->
 
             </LinearLayout>
         </LinearLayout>
@@ -233,21 +181,21 @@
             android:padding="@dimen/dp_10"
             android:background="@drawable/bg_circle_gray"
             android:src="@mipmap/live_last_sound_enable"
-            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.8"/>
 
-<!--        <ImageView-->
-<!--            android:id="@+id/iv_ring"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginLeft="@dimen/dp_30"-->
-<!--            android:padding="@dimen/dp_5"-->
-<!--            android:src="@mipmap/live_last_ring"-->
-<!--            app:layout_constraintBottom_toBottomOf="@+id/iv_mic"-->
-<!--            app:layout_constraintLeft_toRightOf="@id/iv_sound"-->
-<!--            app:layout_constraintTop_toTopOf="@+id/iv_mic" />-->
+        <!--        <ImageView-->
+        <!--            android:id="@+id/iv_ring"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginLeft="@dimen/dp_30"-->
+        <!--            android:padding="@dimen/dp_5"-->
+        <!--            android:src="@mipmap/live_last_ring"-->
+        <!--            app:layout_constraintBottom_toBottomOf="@+id/iv_mic"-->
+        <!--            app:layout_constraintLeft_toRightOf="@id/iv_sound"-->
+        <!--            app:layout_constraintTop_toTopOf="@+id/iv_mic" />-->
 
         <com.ai.addxvideo.addxvideoplay.view.RockerView
             android:id="@+id/rocker"
@@ -259,10 +207,10 @@
             app:buttonModeTouchColor="#b000"
             app:layout_constraintDimensionRatio="1:2"
             app:areaBackground="@mipmap/ic_rocker_button_mode"
-            app:layout_constraintRight_toRightOf="@+id/iv_mic"
+            app:layout_constraintEnd_toEndOf="@+id/iv_mic"
             app:rockerBackground="@mipmap/ic_rocker"
             app:rockerRadiusRatio="0.37"
-            app:layout_constraintLeft_toLeftOf="@+id/iv_mic"
+            app:layout_constraintStart_toStartOf="@+id/iv_mic"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.4"  />
@@ -271,10 +219,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/live_full_mic"
+            android:background="@drawable/bg_circle_gray"
             android:padding="@dimen/dp_16"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginRight="@dimen/dp_70"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/dp_70"
             android:layout_marginBottom="@dimen/dp_30"/>
 
 
@@ -286,7 +235,7 @@
             android:src="@mipmap/live_last_take_photo"
             android:background="@drawable/bg_circle_gray"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.6" />
 
@@ -298,7 +247,7 @@
             android:src="@mipmap/live_last_record"
             android:background="@drawable/bg_circle_gray"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.4" />
 
@@ -312,44 +261,44 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"/>
 
-<!--        <include-->
-<!--            layout="@layout/merge_toast_live_ring"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="@dimen/dp_15"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/rl_full_top"-->
-<!--            app:layout_constraintLeft_toLeftOf="parent"-->
-<!--            app:layout_constraintRight_toRightOf="parent"/>-->
+        <!--        <include-->
+        <!--            layout="@layout/merge_toast_live_ring"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="@dimen/dp_15"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/rl_full_top"-->
+        <!--            app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--            app:layout_constraintRight_toRightOf="parent"/>-->
 
-<!--        <FrameLayout-->
-<!--            android:id="@+id/fl_light"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginRight="@dimen/dp_30"-->
-<!--            app:layout_constraintBottom_toBottomOf="@+id/iv_mic"-->
-<!--            app:layout_constraintRight_toLeftOf="@+id/tv_ratio"-->
-<!--            app:layout_constraintTop_toTopOf="@+id/iv_mic">-->
+        <!--        <FrameLayout-->
+        <!--            android:id="@+id/fl_light"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginRight="@dimen/dp_30"-->
+        <!--            app:layout_constraintBottom_toBottomOf="@+id/iv_mic"-->
+        <!--            app:layout_constraintRight_toLeftOf="@+id/tv_ratio"-->
+        <!--            app:layout_constraintTop_toTopOf="@+id/iv_mic">-->
 
-<!--            <ImageView-->
-<!--                android:id="@+id/iv_light"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_gravity="center"-->
-<!--                android:padding="@dimen/dp_5"-->
-<!--                android:src="@mipmap/ic_light_close"-->
-<!--                android:visibility="invisible" />-->
+        <!--            <ImageView-->
+        <!--                android:id="@+id/iv_light"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_gravity="center"-->
+        <!--                android:padding="@dimen/dp_5"-->
+        <!--                android:src="@mipmap/ic_light_close"-->
+        <!--                android:visibility="invisible" />-->
 
-<!--            <ProgressBar-->
-<!--                android:id="@+id/iv_light_loading"-->
-<!--                android:layout_width="26dp"-->
-<!--                android:layout_height="26dp"-->
-<!--                android:layout_gravity="center"-->
-<!--                android:indeterminateBehavior="repeat"-->
-<!--                android:indeterminateDrawable="@drawable/live_progress_bar"-->
-<!--                android:indeterminateTint="@color/white"-->
-<!--                android:progressTint="@color/white"-->
-<!--                android:visibility="invisible" />-->
-<!--        </FrameLayout>-->
+        <!--            <ProgressBar-->
+        <!--                android:id="@+id/iv_light_loading"-->
+        <!--                android:layout_width="26dp"-->
+        <!--                android:layout_height="26dp"-->
+        <!--                android:layout_gravity="center"-->
+        <!--                android:indeterminateBehavior="repeat"-->
+        <!--                android:indeterminateDrawable="@drawable/live_progress_bar"-->
+        <!--                android:indeterminateTint="@color/white"-->
+        <!--                android:progressTint="@color/white"-->
+        <!--                android:visibility="invisible" />-->
+        <!--        </FrameLayout>-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -371,8 +320,8 @@
         android:layout_height="@dimen/dp_40"
         android:layout_centerHorizontal="true"
         android:background="@drawable/bg_corners_60_red"
-        android:paddingLeft="@dimen/dp_20"
-        android:paddingRight="@dimen/dp_20"
+        android:paddingStart="@dimen/dp_20"
+        android:paddingEnd="@dimen/dp_20"
         android:paddingTop="@dimen/dp_10"
         android:paddingBottom="@dimen/dp_10"
         android:layout_marginTop="@dimen/dp_60"
@@ -383,7 +332,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:drawableLeft="@mipmap/ring_white"
+            android:drawableStart="@mipmap/ring_white"
             android:gravity="center_vertical"
             android:text="@string/alarm_playing"
             android:textColor="@android:color/white">
@@ -391,19 +340,19 @@
         </androidx.appcompat.widget.AppCompatTextView>
     </FrameLayout>
 
-<!--    <com.ai.addxvideo.addxvideoplay.view.VisualizedView-->
-<!--        android:id="@+id/visualized_voice"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_centerInParent="true"-->
-<!--        android:visibility="invisible" />-->
+    <!--    <com.ai.addxvideo.addxvideoplay.view.VisualizedView-->
+    <!--        android:id="@+id/visualized_voice"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_centerInParent="true"-->
+    <!--        android:visibility="invisible" />-->
 
     <LinearLayout
         android:id="@+id/screen_shot_anim"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:layout_margin="@dimen/dp_20"
         android:background="@drawable/white_bg_radius_12"

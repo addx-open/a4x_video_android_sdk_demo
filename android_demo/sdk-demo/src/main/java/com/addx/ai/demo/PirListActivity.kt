@@ -17,12 +17,12 @@ import com.ai.addx.model.response.LibraryStatusResponse
 import com.ai.addxbase.DeviceClicent
 import com.ai.addxbase.IDeviceClient
 import com.ai.addxbase.VideoConfig
+import com.ai.addxbase.adapter.base.BaseQuickAdapter
+import com.ai.addxbase.adapter.base.BaseViewHolder
 import com.ai.addxbase.tagInfos
 import com.ai.addxbase.util.TimeUtils
 import com.ai.addxbase.util.ToastUtils
 import com.ai.addxbase.view.GridSpacingItemDecoration
-import com.chad.library.adapter.base.BaseQuickAdapter
-import com.chad.library.adapter.base.BaseViewHolder
 import com.facebook.drawee.backends.pipeline.Fresco
 import com.facebook.drawee.interfaces.DraweeController
 import com.facebook.drawee.view.SimpleDraweeView

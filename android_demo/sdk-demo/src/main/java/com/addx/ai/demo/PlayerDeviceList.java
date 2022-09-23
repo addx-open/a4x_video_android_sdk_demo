@@ -10,18 +10,18 @@ import android.widget.TextView;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.LinearLayoutCompat;
 
-import com.addx.ai.demo.videoview.KotlinDemoVideoView;
+import com.addx.ai.demo.videoview.DemoLiveVideoView;
 import com.addx.common.utils.LogUtils;
 import com.addx.common.utils.SizeUtils;
 import com.ai.addx.model.DeviceBean;
-import com.ai.addxbase.DeviceClicent;
+import com.ai.addxbase.ADDXDevice;
 import com.ai.addxbase.IDeviceClient;
 import com.ai.addxbase.mvvm.BaseActivity;
 import com.ai.addxbase.util.ToastUtils;
 import com.ai.addxvideo.addxvideoplay.SimpleAddxViewCallBack;
 import com.ai.addxvideo.addxvideoplay.addxplayer.AddxPlayerManager;
 import com.ai.addxvideo.addxvideoplay.addxplayer.IVideoPlayer;
-import com.ai.addxvideo.addxvideoplay.addxplayer.webrtcplayer.AddxVideoWebRtcPlayer;
+import com.ai.addxvideo.addxvideoplay.addxplayer.WebrtcPlayerWrap;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -54,7 +54,7 @@ public class PlayerDeviceList extends BaseActivity {
     }
 
     void listDeviceInfo() {
-        DeviceClicent.getInstance().queryDeviceListAsync(new IDeviceClient.ResultListener<List<DeviceBean>>() {
+        ADDXDevice.getInstance().queryDeviceListAsync(new IDeviceClient.ResultListener<List<DeviceBean>>() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onResult(@NotNull IDeviceClient.ResponseMessage responseMessage, @Nullable List<DeviceBean> result) {
@@ -72,7 +72,7 @@ public class PlayerDeviceList extends BaseActivity {
                     firstDevice = result.get(0);
                     for (DeviceBean bean :result) {
                         LogUtils.d(TAG, "name : " + bean.getDeviceName());
-                        KotlinDemoVideoView demoVideoView = new KotlinDemoVideoView(PlayerDeviceList.this);
+                        DemoLiveVideoView demoVideoView = new DemoLiveVideoView(PlayerDeviceList.this);
                         demoVideoView.init(PlayerDeviceList.this, bean, new SimpleAddxViewCallBack(){
                             @Override
                             public void onStartPlay() {
@@ -117,13 +117,13 @@ public class PlayerDeviceList extends BaseActivity {
                         container.addView(addItem(bean, "move to preposition", new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                demoVideoView.getIAddxPlayer().moveToPreLocationPoint(coordinate);
+                                demoVideoView.getIAddxPlayer().setPreLocationPoint(coordinate);
                                 LogUtils.d(TAG, "moveToPreLocationPoint-----");
                             }
                         }));
                         IVideoPlayer iVideoPlayer = AddxPlayerManager.getInstance().getPlayer(bean);
                         LogUtils.d(TAG, "AddxPlayerManager---------getPlayer---iVideoPlayer:%s",(iVideoPlayer== null));
-                        AddxVideoWebRtcPlayer addxVideoWebRtcPlayer = AddxPlayerManager.getInstance().getWebRTCPlayer(bean.getSerialNumber());
+                        WebrtcPlayerWrap addxVideoWebRtcPlayer = AddxPlayerManager.getInstance().getWebRTCPlayer(bean.getSerialNumber());
                         LogUtils.d(TAG, "AddxPlayerManager---------getPlayer---addxVideoWebRtcPlayer:%s",(addxVideoWebRtcPlayer== null));
                     }
                     Collection<IVideoPlayer> collection = AddxPlayerManager.getInstance().getAllPlayer();

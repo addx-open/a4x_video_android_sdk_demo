@@ -5,7 +5,6 @@ import android.util.Log;
 import com.ai.addxbase.AddxVideoContextInitCallBack;
 import com.ai.addxbase.AddxNode;
 import com.ai.addxbase.A4xContext;
-import com.ai.addxbase.DeviceClicent;
 import com.ai.addxsettings.ADDXSettings;
 //import com.ai.guard.vicohome.AddxInternalApp;
 import androidx.multidex.MultiDexApplication;

@@ -14,7 +14,7 @@ import com.addx.common.utils.SizeUtils
 import com.ai.addx.model.RecordBean
 import com.ai.addx.model.request.DeleteRecordResponse
 import com.ai.addx.model.response.LibraryStatusResponse
-import com.ai.addxbase.DeviceClicent
+import com.ai.addxbase.ADDXDevice
 import com.ai.addxbase.IDeviceClient
 import com.ai.addxbase.VideoConfig
 import com.ai.addxbase.adapter.base.BaseQuickAdapter
@@ -54,7 +54,7 @@ class PirListActivity : BaseActivity() {
     var data: List<RecordBean>? = null
     private fun loadData() {
         showLoadingDialog()
-        DeviceClicent.getInstance().queryVideoList(VideoConfig.Builder(
+        ADDXDevice.getInstance().queryVideoList(VideoConfig.Builder(
             currentDayStartSecond,
             currentDayStartSecond + TimeUnit.DAYS.toSeconds(
                 1
@@ -157,7 +157,7 @@ class PirListActivity : BaseActivity() {
 
             helper.itemView.setOnClickListener(View.OnClickListener {
                 showLoadingDialog()
-//                DeviceClicent.getInstance().setVideoViewedInfo(item.id,
+//                IDeviceClient.getInstance().setVideoViewedInfo(item.id,
 //                    object : IDeviceClient.ResultListener<Any> {
 //                        override fun onResult(
 //                            responseMessage: IDeviceClient.ResponseMessage,
@@ -175,7 +175,7 @@ class PirListActivity : BaseActivity() {
             })
             helper.itemView.setOnLongClickListener {
                 showLoadingDialog()
-//                DeviceClicent.getInstance().setVideoMarkInfo(
+//                IDeviceClient.getInstance().setVideoMarkInfo(
 //                    item.id,
 //                    !item.isMarked,
 //                    object : IDeviceClient.ResultListener<Any> {
@@ -211,7 +211,7 @@ class PirListActivity : BaseActivity() {
         if (selected.isEmpty()) {
             ToastUtils.showShort(R.string.please_select)
         } else {
-//            DeviceClicent.getInstance().deleteVideoRecord(selected,
+//            IDeviceClient.getInstance().deleteVideoRecord(selected,
 //                object : IDeviceClient.ResultListener<DeleteRecordResponse.DataBean> {
 //                    override fun onResult(
 //                        responseMessage: IDeviceClient.ResponseMessage,
@@ -230,7 +230,7 @@ class PirListActivity : BaseActivity() {
 
     fun clickToQueryVideo(view: View) {
         showLoadingDialog()
-        DeviceClicent.getInstance().queryVideoStateWithTime(VideoConfig.Builder(
+        ADDXDevice.getInstance().queryVideoStateWithTime(VideoConfig.Builder(
             (System.currentTimeMillis() - TimeUnit.DAYS.toMillis(31))/1000,
             System.currentTimeMillis()/1000
         ).build(),

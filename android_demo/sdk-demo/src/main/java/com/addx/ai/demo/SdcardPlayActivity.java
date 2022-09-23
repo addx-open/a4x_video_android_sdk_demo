@@ -9,14 +9,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.addx.ai.demo.videoview.kotlinDemoSdcardVideoView;
+import com.addx.ai.demo.videoview.DemoSdcardVideoView;
 import com.addx.common.Const;
 import com.addx.common.utils.LogUtils;
 import com.ai.addx.model.DeviceBean;
 import com.ai.addx.model.VideoSliceBean;
 import com.ai.addx.model.request.SdcardPlaybackEntry;
 import com.ai.addx.model.response.SdcardPlaybackResponse;
-import com.ai.addxbase.DeviceClicent;
+import com.ai.addxbase.ADDXDevice;
 import com.ai.addxbase.IDeviceClient;
 import com.ai.addxbase.mvvm.BaseActivity;
 import com.ai.addxbase.util.TimeUtils;
@@ -41,7 +41,7 @@ import rx.schedulers.Schedulers;
 
 public class SdcardPlayActivity extends BaseActivity {
 
-    private kotlinDemoSdcardVideoView mIAddxSdcardView;//PlaybackLivePlayer
+    private DemoSdcardVideoView mIAddxSdcardView;//PlaybackLivePlayer
     private DeviceBean deviceBean;
 
     private TreeMap<Long, VideoSliceBean> dataMap = new TreeMap<>();
@@ -71,7 +71,7 @@ public class SdcardPlayActivity extends BaseActivity {
     }
 
 //    void getDeviceInfo(){
-//        DeviceClicent.getInstance().queryDeviceInfo(getIntent().getStringExtra("sn"), new IDeviceClient.ResultListener<DeviceBean>() {
+//        ADDXDevice.getInstance().queryDeviceInfo(getIntent().getStringExtra("sn"), new IDeviceClient.ResultListener<DeviceBean>() {
 //            @Override
 //            public void onResult(@NotNull IDeviceClient.ResponseMessage responseMessage, @Nullable DeviceBean result) {
 //                deviceBean = result;
@@ -83,7 +83,7 @@ public class SdcardPlayActivity extends BaseActivity {
 //        });
 //    }
 //    void listDeviceInfo() {
-//        DeviceClicent.getInstance().queryDeviceListAsync(new IDeviceClient.ResultListener<List<DeviceBean>>() {
+//        ADDXDevice.getInstance().queryDeviceListAsync(new IDeviceClient.ResultListener<List<DeviceBean>>() {
 //            @Override
 //            public void onResult(@NotNull IDeviceClient.ResponseMessage responseMessage, @Nullable List<DeviceBean> result) {
 //                if (responseMessage.getResponseCode()<0) {
@@ -150,7 +150,7 @@ public class SdcardPlayActivity extends BaseActivity {
     }
 
     public Observable<SdcardPlaybackResponse> retrieveLocalVideo(SdcardPlaybackEntry entry) {
-        return mIAddxSdcardView.retrieveLocalVideo(entry);
+        return mIAddxSdcardView.getVideoList(entry);
     }
 
     public void showList(){

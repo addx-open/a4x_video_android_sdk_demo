@@ -1,0 +1,41 @@
+# Built application 文件
+*.apk
+*.ap_
+
+# ART/Dalvik VM 文件
+*.dex
+
+# Java class 文件
+*.class
+
+# Generated 文件夹
+bin/
+gen/
+out/
+
+# IntelliJ
+*.iml
+.gradle
+.idea
+
+#mac
+.DS_Store
+/local.properties
+
+/build
+/captures
+
+# 在Android Studio 2.2及更高版本中生成的外部原生构建文件夹
+.externalNativeBuild
+
+/app/release/
+/app/debug/
+/app/bugly/BuglyUploadLog.txt
+/app/releaseApk/
+.cxx/
+src/main/res/menu/
+/localproject
+buildSrc/build/
+.gitmodules
+/android-demo
+

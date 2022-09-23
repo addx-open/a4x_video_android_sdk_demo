@@ -2,17 +2,19 @@ package com.addx.ai.demo;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.Nullable;
 
+import com.addx.common.permission.PermissionHelper;
 import com.addx.common.utils.LogUtils;
 import com.ai.addx.model.DeviceBean;
 import com.ai.addxbase.A4xContext;
 import com.ai.addxbase.ADDXBind;
 import com.ai.addxbase.AddxNode;
 import com.ai.addxbase.AddxVideoContextInitCallBack;
-import com.ai.addxbase.permission.PermissionHelp;
+import com.ai.addxbase.permission.A4xPermissionHelper;
 import com.ai.addxbase.util.ToastUtils;
 import com.ai.addxsettings.ADDXSettings;
 import com.ai.addxsettings.dialog.CommonBottomDialog;
@@ -172,8 +174,9 @@ public class MainActivity extends BaseActivity {
                     .itemClick(new CommonBottomDialog.OnItemClickListener() {
                         @Override
                         public void onItemClick(int position, @NotNull String value) {
-                            LogUtils.d(TAG, "value = " + value);
+                            Log.d(TAG, "value = " + value);
                             initSDK(mTokenTests.get(value));
+                            A4xPermissionHelper.requestStoragePermissions(MainActivity.this, null);
                         }
                     }).show();
         } else {
@@ -183,7 +186,7 @@ public class MainActivity extends BaseActivity {
 
     private void initSDK(AccountInfo accountInfo) {
         showLoadingDialog();
-        A4xContext.getInstance().initA4xSdk(getApplicationContext(), accountInfo.isProd ? "sdkdemo" : "paastest", "zh", "CN", A4xContext.BuildEnv.STAGING, accountInfo.isProd ? AddxNode.PROD_NODE_US : AddxNode.STRAGE_NODE_US, accountInfo.token, new AddxVideoContextInitCallBack() {
+        A4xContext.getInstance().initA4xSdk(getApplicationContext(), accountInfo.isProd ? "sdkdemo" : "paastest", "zh", "CN", accountInfo.isProd ? AddxNode.PROD_NODE_US : AddxNode.STRAGE_NODE_US, accountInfo.token, new AddxVideoContextInitCallBack() {
             @Override
             public void success() {
                 DemoGlobal.isSDKInited = true;
@@ -316,6 +319,5 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        PermissionHelp.checkStoragePermissions(this, null);
     }
 }

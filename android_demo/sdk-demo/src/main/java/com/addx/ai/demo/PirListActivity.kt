@@ -14,12 +14,9 @@ import com.addx.common.utils.SizeUtils
 import com.ai.addx.model.RecordBean
 import com.ai.addx.model.request.DeleteRecordResponse
 import com.ai.addx.model.response.LibraryStatusResponse
-import com.ai.addxbase.ADDXDevice
-import com.ai.addxbase.IDeviceClient
-import com.ai.addxbase.VideoConfig
+import com.ai.addxbase.*
 import com.ai.addxbase.adapter.base.BaseQuickAdapter
 import com.ai.addxbase.adapter.base.BaseViewHolder
-import com.ai.addxbase.tagInfos
 import com.ai.addxbase.util.TimeUtils
 import com.ai.addxbase.util.ToastUtils
 import com.ai.addxbase.view.GridSpacingItemDecoration
@@ -54,7 +51,7 @@ class PirListActivity : BaseActivity() {
     var data: List<RecordBean>? = null
     private fun loadData() {
         showLoadingDialog()
-        ADDXDevice.getInstance().queryVideoList(VideoConfig.Builder(
+        DeviceClicent.getInstance().queryVideoList(VideoConfig.Builder(
             currentDayStartSecond,
             currentDayStartSecond + TimeUnit.DAYS.toSeconds(
                 1
@@ -230,7 +227,7 @@ class PirListActivity : BaseActivity() {
 
     fun clickToQueryVideo(view: View) {
         showLoadingDialog()
-        ADDXDevice.getInstance().queryVideoStateWithTime(VideoConfig.Builder(
+        DeviceClicent.getInstance().queryVideoStateWithTime(VideoConfig.Builder(
             (System.currentTimeMillis() - TimeUnit.DAYS.toMillis(31))/1000,
             System.currentTimeMillis()/1000
         ).build(),

@@ -55,7 +55,7 @@ class AlexaActivity : BaseActivity() {
     }
     fun clickBind(v: View?) {
         showLoadingDialog()
-        val data: MutableLiveData<Pair<AccountViewModel.State, String>>? = ADDXAvlinkage.get().bindAlexa("vicoo","amazon",null,mAccountViewModel!!)
+        val data: MutableLiveData<Pair<AccountViewModel.State, String>>? = ADDXAvlinkage.get().bindPlatform("vicoo","amazon",null,mAccountViewModel!!)
         data?.observe(this, {
             dismissLoadingDialog()
             when (it.first) {

@@ -48,6 +48,7 @@ import com.ai.addxbase.bluetooth.LocalWebSocketClient
 import com.ai.addxbase.helper.SharePreManager
 import com.ai.addxbase.permission.A4xPermissionHelper
 import com.ai.addxbase.permission.PermissionPageStep
+import com.ai.addxbase.trace.other.TrackManager
 import com.ai.addxbase.util.AppUtils
 import com.ai.addxbase.util.LocalDrawableUtills
 import com.ai.addxbase.util.TimeUtils
@@ -65,7 +66,6 @@ import com.ai.addxvideo.addxvideoplay.addxplayer.*
 import com.ai.addxvideo.addxvideoplay.addxplayer.addxijkplayer.AddxGLSurfaceView
 import com.ai.addxvideo.addxvideoplay.addxplayer.addxijkplayer.AddxVideoIjkPlayer
 import com.ai.addxvideo.addxvideoplay.addxplayer.webrtcplayer.*
-import com.ai.addxvideo.track.other.TrackManager
 import com.base.resmodule.view.LoadingDialog
 import kotlinx.android.synthetic.main.layout_player_full.view.*
 import rx.Subscription
@@ -132,7 +132,7 @@ open abstract class DemoBaseVideoView : FrameLayout, IAddxView, IAddxPlayerState
     open var tvErrorButton: TextView? = null
     open var tvErrorButtonLeft: TextView? = null
     var tvUnderLineErrorBtn: TextView? = null
-    private var ivErrorHelp: ImageView? = null
+//    private var ivErrorHelp: ImageView? = null
     var errorLayout: ViewGroup? = null
     //    private var oldLayoutParams: ViewGroup.LayoutParams? = null
     private var oldLayoutIndex: Int = 0
@@ -184,8 +184,8 @@ open abstract class DemoBaseVideoView : FrameLayout, IAddxView, IAddxPlayerState
             if(sn == null){
                 return null
             }
-            val localThumbTime = VideoSharePreManager.getInstance(context).getThumbImgLastLocalFreshTime(sn)/1000
-            val serverThumbTime = VideoSharePreManager.getInstance(context).getThumbImgLastServerFreshTime(sn)
+            val localThumbTime = VideoSharePreManager.getInstance().getThumbImgLastLocalFreshTime(sn)/1000
+            val serverThumbTime = VideoSharePreManager.getInstance().getThumbImgLastServerFreshTime(sn)
             var imgPath:String? = null
             if(serverThumbTime > localThumbTime){
                 imgPath = DownloadUtil.getThumbImgDir(context) + MD5Util.md5(sn)+".jpg"
@@ -236,7 +236,7 @@ open abstract class DemoBaseVideoView : FrameLayout, IAddxView, IAddxPlayerState
         }
         setOnClickListener(this)
         mute = AddxAudioSet.getMuteState(dataSourceBean?.serialNumber)
-        mVideoRatio = VideoSharePreManager.getInstance(context).getLiveRatio(dataSourceBean!!)
+        mVideoRatio = VideoSharePreManager.getInstance().getLiveRatio(dataSourceBean!!)
         LiveHelper.parseRatio(mDeviceRatioList, dataSourceBean!!)
         if(mDeviceRatioList.isNotEmpty()){
             if(TextUtils.isEmpty(mVideoRatio) || !mDeviceRatioList.containsValue(mVideoRatio)){
@@ -447,7 +447,7 @@ open abstract class DemoBaseVideoView : FrameLayout, IAddxView, IAddxPlayerState
     internal open fun resetResolutionForG0() {
         dataSourceBean?.let {
             if (it.deviceModel.isG0) {
-                VideoSharePreManager.getInstance(context).setLiveRatio(it, A4xCommonEntity.VideoResolution.VIDEO_SIZE_1280x720.value)
+                VideoSharePreManager.getInstance().setLiveRatio(it, A4xCommonEntity.VideoResolution.VIDEO_SIZE_1280x720.value)
             }
         }
     }
@@ -502,7 +502,6 @@ open abstract class DemoBaseVideoView : FrameLayout, IAddxView, IAddxPlayerState
     }
 
     open fun startInternal() {
-        LogUtils.w(TAG, "startLive-----net:${NetworkUtils.isWifiConnected(A4xContext.getInstance().getmContext())}---sn:${dataSourceBean!!.serialNumber}")
         activityContext.window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         resetResolutionForG0()
         liveStartTime = SystemClock.elapsedRealtime()
@@ -531,7 +530,7 @@ open abstract class DemoBaseVideoView : FrameLayout, IAddxView, IAddxPlayerState
     open fun saveScreenShotWhenStopPlay(frame: Bitmap){
         if (frame != null) {
             mLocalThumbTime = TimeUtils.getUTCTime()
-            VideoSharePreManager.getInstance(context).setThumbImgLocalLastFresh(dataSourceBean!!.serialNumber, TimeUtils.getUTCTime())
+            VideoSharePreManager.getInstance().setThumbImgLocalLastFresh(dataSourceBean!!.serialNumber, TimeUtils.getUTCTime())
             setCacheThumbImg(frame)
         }
     }
@@ -726,7 +725,7 @@ open abstract class DemoBaseVideoView : FrameLayout, IAddxView, IAddxPlayerState
 //                backToNormal()
             }
             com.ai.addxvideo.R.id.fullscreen -> {
-                mVideoCallBack?.onClickFullScreen(v, dataSourceBean!!)
+//                mVideoCallBack?.onClickFullScreen(v, dataSourceBean!!)
                 createRecordClick("fullscreen_btn_clickid_")
                 LogUtils.d(TAG, "onClick------fullscreen---sn:" + dataSourceBean!!.serialNumber)
 //                if(currentState != CURRENT_STATE_ERROR){
@@ -1170,7 +1169,7 @@ open abstract class DemoBaseVideoView : FrameLayout, IAddxView, IAddxPlayerState
         tvErrorButton = inflate.findViewById(com.ai.addxvideo.R.id.tv_error_btn)
         tvErrorButtonLeft = inflate.findViewById(com.ai.addxvideo.R.id.tv_error_btn_left)
         tvUnderLineErrorBtn = inflate.findViewById(com.ai.addxvideo.R.id.tv_underline_error_btn)
-        ivErrorHelp = inflate.findViewById(com.ai.addxvideo.R.id.iv_error_help)
+//        ivErrorHelp = inflate.findViewById(com.ai.addxvideo.R.id.iv_error_help)
         ivErrorThumb = inflate.findViewById(com.ai.addxvideo.R.id.iv_error_thumb)
         ivErrorExit?.setOnClickListener { backToNormal() }
         tvErrorButton?.setOnClickListener { view -> onClickErrorRetry(view) }
@@ -1815,8 +1814,8 @@ open abstract class DemoBaseVideoView : FrameLayout, IAddxView, IAddxPlayerState
 
     open fun updateThumbImageSource(){
 //        LogUtils.d(TAG, "updateThumbImageSource-------mServerThumbTime:${mServerThumbTime}---mLocalThumbTime:${mLocalThumbTime}")
-        mLocalThumbTime = VideoSharePreManager.getInstance(context).getThumbImgLastLocalFreshTime(dataSourceBean!!.serialNumber) / 1000
-        mServerThumbTime = VideoSharePreManager.getInstance(context).getThumbImgLastServerFreshTime(dataSourceBean!!.serialNumber)
+        mLocalThumbTime = VideoSharePreManager.getInstance().getThumbImgLastLocalFreshTime(dataSourceBean!!.serialNumber) / 1000
+        mServerThumbTime = VideoSharePreManager.getInstance().getThumbImgLastServerFreshTime(dataSourceBean!!.serialNumber)
         if(mServerThumbTime > mLocalThumbTime){
 //            LogUtils.d(TAG, "updateThumbImageSource------toRequestAndRefreshThumbImg-------sn:${dataSourceBean!!.serialNumber}")
             val imgPath = DownloadUtil.getThumbImgDir(activityContext) + MD5Util.md5(dataSourceBean?.serialNumber)+".jpg"
@@ -1965,7 +1964,7 @@ open abstract class DemoBaseVideoView : FrameLayout, IAddxView, IAddxPlayerState
         mVideoCallBack?.isSupportGuide()
     }
     internal open fun onFullScreenStateChange(fullScreen: Boolean) {
-        mVideoCallBack?.onFullScreenStateChange(fullScreen)
+        mVideoCallBack?.onFullScreenStateChange(fullScreen, dataSourceBean!!)
     }
 
     override fun isFullScreen(): Boolean{
@@ -2022,12 +2021,6 @@ open abstract class DemoBaseVideoView : FrameLayout, IAddxView, IAddxPlayerState
 
     open fun getStopDelayReleaseTime(): Int{
         return 20//s
-    }
-
-    override fun releaseRenderView(){
-        if(renderView is A4xVideoViewRender){
-            (renderView as A4xVideoViewRender).release()
-        }
     }
 }
 

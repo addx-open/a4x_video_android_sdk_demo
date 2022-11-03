@@ -54,7 +54,7 @@ import com.ai.addxvideo.addxvideoplay.addxplayer.*
 import com.ai.addxvideo.addxvideoplay.view.RockerView
 import com.ai.addxvideo.addxvideoplay.view.RockerView.OnRockerPositionChangeListener
 import com.ai.addxvideo.addxvideoplay.view.VisualizedView
-import com.ai.addxvideo.track.other.TrackManager
+import com.ai.addxbase.trace.other.TrackManager
 import com.airbnb.lottie.LottieAnimationView
 import com.alibaba.fastjson.JSON
 import com.bumptech.glide.Glide
@@ -225,7 +225,7 @@ open class  DemoLiveVideoView: DemoBaseVideoView, OnRockerPositionChangeListener
                             removeCallbacks(mFadeOut)
                             iAddxPlayer?.audioEnable(true)
                             iAddxPlayer?.speakEnable(true)
-//                            iAddxPlayer?.setVolume(VideoSharePreManager.getInstance(context).getCommunicationVoiceSize(dataSourceBean!!.serialNumber))
+//                            iAddxPlayer?.setVolume(VideoSharePreManager.getInstance().getCommunicationVoiceSize(dataSourceBean!!.serialNumber))
                             LogUtils.d(TAG, "hide  mShowing  startBtn?.visibility = View.INVISIBLE")
                             startBtn?.visibility = View.INVISIBLE
                             updateSoundIcon(false)
@@ -798,9 +798,9 @@ open class  DemoLiveVideoView: DemoBaseVideoView, OnRockerPositionChangeListener
     private fun changeResolution(resolution: String) {
         mVideoRatio = resolution
         isChanggingRatio = true
-        VideoSharePreManager.getInstance(context).setLiveRatio(dataSourceBean!!, mVideoRatio)
+        VideoSharePreManager.getInstance().setLiveRatio(dataSourceBean!!, mVideoRatio)
         var ratio = Ratio.convertResolutionStrToRatioStr(mVideoRatio)
-        VideoSharePreManager.getInstance(context).setLiveRatioHd(dataSourceBean, ratio == Ratio.R_HD)
+        VideoSharePreManager.getInstance().setLiveRatioHd(dataSourceBean, ratio == Ratio.R_HD)
 //        updateRatioTextView(resolution)
         tvRatio?.text = Ratio.getShowTextByResolutionStr(context, resolution)
         iAddxPlayer?.setResolution(mVideoRatio, mSetResolutionCallback)
@@ -810,9 +810,9 @@ open class  DemoLiveVideoView: DemoBaseVideoView, OnRockerPositionChangeListener
         dataSourceBean?.let {
             if (it.deviceModel.isG0) {
                 mVideoRatio = A4xCommonEntity.VideoResolution.VIDEO_SIZE_1280x720.value
-                VideoSharePreManager.getInstance(context).setLiveRatio(it, A4xCommonEntity.VideoResolution.VIDEO_SIZE_1280x720.value)
+                VideoSharePreManager.getInstance().setLiveRatio(it, A4xCommonEntity.VideoResolution.VIDEO_SIZE_1280x720.value)
                 var ratio = Ratio.convertResolutionStrToRatioStr(mVideoRatio)
-                VideoSharePreManager.getInstance(context).setLiveRatioHd(it, ratio == Ratio.R_HD)
+                VideoSharePreManager.getInstance().setLiveRatioHd(it, ratio == Ratio.R_HD)
 //                updateRatioTextView(mVideoRatio)
                 tvRatio?.text = Ratio.getShowTextByResolutionStr(context, mVideoRatio)
             }
@@ -915,7 +915,7 @@ open class  DemoLiveVideoView: DemoBaseVideoView, OnRockerPositionChangeListener
             DownloadUtil.downloadImg(dataSourceBean?.getThumbImgUrl(), imgPath, object : DownloadUtil.DownloadListener {
                 override fun success(url: String?, path: String?) {
                     LogUtils.d(TAG, "toRequestAndRefreshThumbImg===success==code:${this@DemoLiveVideoView.hashCode()}==sn:${dataSourceBean?.serialNumber}==path:$path==url:${dataSourceBean?.getThumbImgUrl()}")
-                    VideoSharePreManager.getInstance(context).setThumbImgServerLastFresh(dataSourceBean?.serialNumber, dataSourceBean?.thumbImgTime, dataSourceBean?.thumbImgUrl)
+                    VideoSharePreManager.getInstance().setThumbImgServerLastFresh(dataSourceBean?.serialNumber, dataSourceBean?.thumbImgTime, dataSourceBean?.thumbImgUrl)
                     mServerThumbTime = dataSourceBean?.thumbImgTime!!
                     startThumbImgChangeAnimtor(imgPath)
                 }
@@ -927,36 +927,20 @@ open class  DemoLiveVideoView: DemoBaseVideoView, OnRockerPositionChangeListener
         }
     }
 
+    override fun brokeVoice(p0: AddxLiveOptListener.BrokeVoiceListener?, p1: Int, p2: Int) {
+        
+    }
+
     override fun ring(ringListener: AddxLiveOptListener.RingListener) {
         showAlarmDialog(ringListener)
     }
 
-    override fun light(listener: AddxLiveOptListener.Listener) {
-        setWhiteLight(listener)
+    override fun sport(p0: SportAutoTrackListener?) {
+        
     }
 
-    override fun sportAuto(isInit: Boolean, isSelected: Boolean, sportAutoTrackListener: AddxLiveOptListener.SportAutoTrackListener) {
-        if(mIsFullScreen){
-//            mAddxLiveOptListener?.sportAuto(isInit, isSelected, sportAutoTrackListener)
-            //全屏
-            if (!mIsSplit) {
-                mIvSportTrackIcon!!.setImageResource(R.mipmap.rocker_black)
-                mTvSportTrackText!!.setText(R.string.motion_tracking)
-            }
-            if (isInit) {
-                loadSportTrack(dataSourceBean!!, sportAutoTrackListener)
-            } else {
-                if (!mIsSplit) {
-                    changeSportTrack(
-                        dataSourceBean!!,
-                        !mIvSportTrackIcon!!.isSelected,
-                        sportAutoTrackListener
-                    )
-                } else {
-                    changeSportTrack(dataSourceBean!!, isSelected, sportAutoTrackListener)
-                }
-            }
-        }
+    override fun light(listener: AddxLiveOptListener.Listener) {
+        setWhiteLight(listener)
     }
 
 //    override fun voice() {
@@ -1080,16 +1064,12 @@ open class  DemoLiveVideoView: DemoBaseVideoView, OnRockerPositionChangeListener
                             }
                             sportAutoTrackListener?.callback(
                                 true,
-                                isSportTrackOpen,
-                                isSportMoveMode,
-                                false
+                                isSportTrackOpen
                             )
                         } else {
                             sportAutoTrackListener?.callback(
                                 false,
-                                isSportTrackOpen,
-                                isSportMoveMode,
-                                false
+                                isSportTrackOpen
                             )
                         }
                         resetSportTrackForView()
@@ -1099,9 +1079,7 @@ open class  DemoLiveVideoView: DemoBaseVideoView, OnRockerPositionChangeListener
                         super.doOnError(e)
                         sportAutoTrackListener?.callback(
                             false,
-                            isSportTrackOpen,
-                            isSportMoveMode,
-                            false
+                            isSportTrackOpen
                         )
                         isSportTrackLoading = false
                         resetSportTrackForView()
@@ -1133,18 +1111,6 @@ open class  DemoLiveVideoView: DemoBaseVideoView, OnRockerPositionChangeListener
                         cacheConfig.motionTrack = if (isSelected) 1 else 0
                         isSportTrackOpen = isSelected
                         DeviceConfigHelp.cacheConfig(cacheConfig)
-                        sportAutoTrackListener?.callback(
-                            true, isSportTrackOpen, DeviceConfigHelp.isSportTrackMove(
-                                cacheConfig
-                            ), true
-                        )
-                        RockerControlManager.getInstance().setSportTrackState(
-                            this@DemoLiveVideoView,
-                            isSportTrackOpen,
-                            true,
-                            "",
-                            isSportMoveMode
-                        )
                         isSportTrackLoading = false
                         if (!isSportTrackLoading) {
                             LiveHelper.checkShouldShowGuide(activityContext, device, isSportMoveMode, isSelected)
@@ -1152,18 +1118,9 @@ open class  DemoLiveVideoView: DemoBaseVideoView, OnRockerPositionChangeListener
                     } else {
                         sportAutoTrackListener?.callback(
                             false,
-                            isSportTrackOpen,
-                            isSportMoveMode,
-                            false
+                            isSportTrackOpen
                         )
                         ToastUtils.showShort(R.string.open_fail_retry)
-                        RockerControlManager.getInstance().setSportTrackState(
-                            this@DemoLiveVideoView,
-                            isSportTrackOpen,
-                            false,
-                            "",
-                            isSportMoveMode
-                        )
                         isSportTrackLoading = false
                     }
                     resetSportTrackForView()
@@ -1173,20 +1130,11 @@ open class  DemoLiveVideoView: DemoBaseVideoView, OnRockerPositionChangeListener
                     super.doOnError(e)
                     sportAutoTrackListener?.callback(
                         false,
-                        isSportTrackOpen,
-                        isSportMoveMode,
-                        false
+                        isSportTrackOpen
                     )
                     ToastUtils.showShort(R.string.open_fail_retry)
                     isSportTrackLoading = false
                     resetSportTrackForView()
-                    RockerControlManager.getInstance().setSportTrackState(
-                        this@DemoLiveVideoView,
-                        isSportTrackOpen,
-                        false,
-                        "",
-                        isSportMoveMode
-                    )
                 }
             })
         mSportSubscription.add(subscribe)
@@ -1349,12 +1297,6 @@ open class  DemoLiveVideoView: DemoBaseVideoView, OnRockerPositionChangeListener
                 mTvSportTrackText = textView
                 icon.setOnClickListener { v: View? ->
                     view.isEnabled = false
-                    changeSportTrack(
-                        bean,
-                        !(mIvSportTrackIcon?.isSelected!!)
-                    ) { ret: Boolean?, isOpen: Boolean?, isSportMoveMode: Boolean?, shouldCheck: Boolean? ->
-                        view.isEnabled = true
-                    }
                 }
                 icon.setImageResource(R.mipmap.sport_track_move)
                 textView.setText(R.string.motion_tracking)
@@ -1706,5 +1648,17 @@ open class  DemoLiveVideoView: DemoBaseVideoView, OnRockerPositionChangeListener
     override  fun hideNav(){
         CommonUtil.hideNavKey(activityContext)
         CommonUtil.hideNavKey(liveFullScreenMenuWindow!!.contentView)
+    }
+
+    override fun getBrokeVoiceType(): Int {
+        return 1
+    }
+
+    override fun getSportTrackOpen(): Boolean {
+        return false
+    }
+
+    override fun onDebug(p0: MutableMap<String, String>?) {
+        
     }
 }

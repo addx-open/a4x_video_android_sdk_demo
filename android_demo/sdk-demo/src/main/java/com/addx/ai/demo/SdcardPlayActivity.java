@@ -16,7 +16,7 @@ import com.ai.addx.model.DeviceBean;
 import com.ai.addx.model.VideoSliceBean;
 import com.ai.addx.model.request.SdcardPlaybackEntry;
 import com.ai.addx.model.response.SdcardPlaybackResponse;
-import com.ai.addxbase.ADDXDevice;
+import com.ai.addxbase.DeviceClicent;
 import com.ai.addxbase.IDeviceClient;
 import com.ai.addxbase.mvvm.BaseActivity;
 import com.ai.addxbase.util.TimeUtils;
@@ -71,7 +71,7 @@ public class SdcardPlayActivity extends BaseActivity {
     }
 
 //    void getDeviceInfo(){
-//        ADDXDevice.getInstance().queryDeviceInfo(getIntent().getStringExtra("sn"), new IDeviceClient.ResultListener<DeviceBean>() {
+//        DeviceClicent.getInstance().queryDeviceInfo(getIntent().getStringExtra("sn"), new IDeviceClient.ResultListener<DeviceBean>() {
 //            @Override
 //            public void onResult(@NotNull IDeviceClient.ResponseMessage responseMessage, @Nullable DeviceBean result) {
 //                deviceBean = result;
@@ -83,7 +83,7 @@ public class SdcardPlayActivity extends BaseActivity {
 //        });
 //    }
 //    void listDeviceInfo() {
-//        ADDXDevice.getInstance().queryDeviceListAsync(new IDeviceClient.ResultListener<List<DeviceBean>>() {
+//        DeviceClicent.getInstance().queryDeviceListAsync(new IDeviceClient.ResultListener<List<DeviceBean>>() {
 //            @Override
 //            public void onResult(@NotNull IDeviceClient.ResponseMessage responseMessage, @Nullable List<DeviceBean> result) {
 //                if (responseMessage.getResponseCode()<0) {

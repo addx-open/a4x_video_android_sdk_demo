@@ -14,7 +14,7 @@ import com.addx.ai.demo.videoview.DemoLiveVideoView;
 import com.addx.common.utils.LogUtils;
 import com.addx.common.utils.SizeUtils;
 import com.ai.addx.model.DeviceBean;
-import com.ai.addxbase.ADDXDevice;
+import com.ai.addxbase.DeviceClicent;
 import com.ai.addxbase.IDeviceClient;
 import com.ai.addxbase.mvvm.BaseActivity;
 import com.ai.addxbase.util.ToastUtils;
@@ -54,7 +54,7 @@ public class PlayerDeviceList extends BaseActivity {
     }
 
     void listDeviceInfo() {
-        ADDXDevice.getInstance().queryDeviceListAsync(new IDeviceClient.ResultListener<List<DeviceBean>>() {
+        DeviceClicent.getInstance().queryDeviceListAsync(new IDeviceClient.ResultListener<List<DeviceBean>>() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onResult(@NotNull IDeviceClient.ResponseMessage responseMessage, @Nullable List<DeviceBean> result) {
@@ -123,7 +123,7 @@ public class PlayerDeviceList extends BaseActivity {
                         }));
                         IVideoPlayer iVideoPlayer = AddxPlayerManager.getInstance().getPlayer(bean);
                         LogUtils.d(TAG, "AddxPlayerManager---------getPlayer---iVideoPlayer:%s",(iVideoPlayer== null));
-                        WebrtcPlayerWrap addxVideoWebRtcPlayer = AddxPlayerManager.getInstance().getWebRTCPlayer(bean.getSerialNumber());
+                        IVideoPlayer addxVideoWebRtcPlayer = AddxPlayerManager.getInstance().getPlayer(bean);
                         LogUtils.d(TAG, "AddxPlayerManager---------getPlayer---addxVideoWebRtcPlayer:%s",(addxVideoWebRtcPlayer== null));
                     }
                     Collection<IVideoPlayer> collection = AddxPlayerManager.getInstance().getAllPlayer();
@@ -150,7 +150,7 @@ public class PlayerDeviceList extends BaseActivity {
 
     public void stopPlayExcludeOne(View v){
         LogUtils.d(TAG, "AddxPlayerManager---stopOther---");
-        AddxPlayerManager.getInstance().stopOther(firstDevice.getSerialNumber());
+//        AddxPlayerManager.getInstance().stopOther(firstDevice.getSerialNumber());
     }
 
     public void clickAddDevice(View v){

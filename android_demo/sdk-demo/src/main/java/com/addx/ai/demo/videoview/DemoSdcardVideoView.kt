@@ -104,6 +104,10 @@ open class DemoSdcardVideoView : DemoBaseVideoView, IAddxSdcardView {
         }
     }
 
+    override fun getBrokeVoiceType(): Int {
+        return 1
+    }
+
     override fun getPlayingStartTime(): Long {
         return mLivingStartTime!!
     }
@@ -204,6 +208,14 @@ open class DemoSdcardVideoView : DemoBaseVideoView, IAddxSdcardView {
             })
             iAddxPlayer?.dayHasVideo(entry, getSdHasVideoDaysCallBackMap.get(entry.startTime))
         })
+    }
+
+    override fun getSportTrackOpen(): Boolean {
+        return false
+    }
+
+    override fun onDebug(p0: MutableMap<String, String>?) {
+        
     }
 
     override fun showAutoHideUI(timeout: Long) {

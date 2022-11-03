@@ -12,7 +12,7 @@ import com.addx.common.Const;
 import com.addx.common.utils.LogUtils;
 import com.addx.common.utils.SizeUtils;
 import com.ai.addx.model.UserConfigBean;
-import com.ai.addxbase.ADDXDevice;
+import com.ai.addxbase.DeviceClicent;
 import com.ai.addxbase.IDeviceClient;
 import com.ai.addxbase.model.OtaStateResponse;
 import com.ai.addxbase.mvvm.RxViewModel;
@@ -86,7 +86,7 @@ public class DeviceList extends BaseActivity {
     }
     void listDeviceInfo() {
         showLoadingDialog();
-        ADDXDevice.getInstance().queryDeviceListAsync(new IDeviceClient.ResultListener<List<DeviceBean>>() {
+        DeviceClicent.getInstance().queryDeviceListAsync(new IDeviceClient.ResultListener<List<DeviceBean>>() {
             @Override
             public void onResult(@NotNull IDeviceClient.ResponseMessage responseMessage, @Nullable List<DeviceBean> result) {
                 dismissLoadingDialog();
@@ -115,6 +115,11 @@ public class DeviceList extends BaseActivity {
                     LiveAddxVideoView liveAddxVideoView = new LiveAddxVideoView(DeviceList.this);
                     allPlayers.put(bean.getSerialNumber(), new WeakReference<>(liveAddxVideoView));
                     liveAddxVideoView.init(DeviceList.this, bean, new IAddxViewCallback(){
+                        @Override
+                        public void onFullScreenStateChange(boolean b, @NotNull DeviceBean deviceBean) {
+
+                        }
+
                         @Override
                         public void toConnectApDevice(@NotNull String s) {
 
@@ -148,11 +153,6 @@ public class DeviceList extends BaseActivity {
 
                         }
 
-                        @Override
-                        public void onClickFullScreen(@Nullable View v, @NotNull DeviceBean sn) {
-                            LogUtils.d(TAG, "liveAddxVideoView----onClickFullScreen");
-
-                        }
 
                         @Override
                         public void toLibrary(@NotNull DeviceBean bean) {
@@ -192,12 +192,6 @@ public class DeviceList extends BaseActivity {
                         }
 
                         @Override
-                        public void onFullScreenStateChange(boolean fullScreen) {
-                            LogUtils.d(TAG, "liveAddxVideoView----onFullScreenStateChange");
-
-                        }
-
-                        @Override
                         public void onPlayStateChanged(int currentState, int oldState) {
                             LogUtils.d(TAG, "liveAddxVideoView----onPlayStateChanged");
 
@@ -229,7 +223,7 @@ public class DeviceList extends BaseActivity {
                     container.addView(addItem(bean, "Click To SD Card Video", new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            ADDXDevice.getInstance().queryDeviceInfo(bean.getSerialNumber(), new IDeviceClient.ResultListener<DeviceBean>(){
+                            DeviceClicent.getInstance().queryDeviceInfo(bean.getSerialNumber(), new IDeviceClient.ResultListener<DeviceBean>(){
                                 @Override
                                 public void onResult(@NotNull IDeviceClient.ResponseMessage responseMessage, @Nullable DeviceBean result) {
                                     if (result.isSdCardNormal()) {
@@ -261,7 +255,7 @@ public class DeviceList extends BaseActivity {
                         @Override
                         public void onClick(View v) {
                             showLoadingDialog();
-                            ADDXDevice.getInstance().deleteDevice(bean.getSerialNumber(), new IDeviceClient.ResultListener<Object>() {
+                            DeviceClicent.getInstance().deleteDevice(bean.getSerialNumber(), new IDeviceClient.ResultListener<Object>() {
                                 @Override
                                 public void onResult(@NotNull IDeviceClient.ResponseMessage responseMessage, @Nullable Object result) {
                                     dismissLoadingDialog();
@@ -278,7 +272,7 @@ public class DeviceList extends BaseActivity {
                         @Override
                         public void onClick(View v) {
                             showLoadingDialog();
-                            ADDXDevice.getInstance().queryDeviceInfo(bean.getSerialNumber(), new IDeviceClient.ResultListener<DeviceBean>() {
+                            DeviceClicent.getInstance().queryDeviceInfo(bean.getSerialNumber(), new IDeviceClient.ResultListener<DeviceBean>() {
                                 @Override
                                 public void onResult(@NotNull IDeviceClient.ResponseMessage responseMessage, @Nullable DeviceBean result) {
                                     dismissLoadingDialog();
@@ -296,7 +290,7 @@ public class DeviceList extends BaseActivity {
                         @Override
                         public void onClick(View v) {
                             showLoadingDialog();
-                            ADDXDevice.getInstance().queryDeviceConfigAsync(bean.getSerialNumber(), new IDeviceClient.ResultListener<UserConfigBean>() {
+                            DeviceClicent.getInstance().queryDeviceConfigAsync(bean.getSerialNumber(), new IDeviceClient.ResultListener<UserConfigBean>() {
                                 @Override
                                 public void onResult(@NotNull IDeviceClient.ResponseMessage responseMessage, @Nullable UserConfigBean result) {
                                     dismissLoadingDialog();
@@ -318,7 +312,7 @@ public class DeviceList extends BaseActivity {
                                 return;
                             }
                             showLoadingDialog();
-                            ADDXDevice.getInstance().checkOtaStatus(bean.getSerialNumber(), new IDeviceClient.ResultListener<OtaStateResponse>() {
+                            DeviceClicent.getInstance().checkOtaStatus(bean.getSerialNumber(), new IDeviceClient.ResultListener<OtaStateResponse>() {
                                 @Override
                                 public void onResult(@NotNull IDeviceClient.ResponseMessage responseMessage, @Nullable OtaStateResponse result) {
                                     dismissLoadingDialog();
@@ -365,7 +359,7 @@ public class DeviceList extends BaseActivity {
                             if (bean.isFirmwareUpdateing()) {
                                 ToastUtils.showShort(R.string.fireware_is_updating);
                             } else if (bean.needOta()) {
-                                ADDXDevice.getInstance().startOta(bean.getSerialNumber(), false, new IDeviceClient.ResultListener<Object>() {
+                                DeviceClicent.getInstance().startOta(bean.getSerialNumber(), false, new IDeviceClient.ResultListener<Object>() {
                                     @Override
                                     public void onResult(@NotNull IDeviceClient.ResponseMessage responseMessage, @Nullable Object result) {
                                         if (responseMessage.getResponseCode() == Const.ResponseCode.CODE_OK) {

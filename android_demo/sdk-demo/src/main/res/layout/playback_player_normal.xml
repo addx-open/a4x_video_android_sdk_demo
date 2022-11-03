@@ -36,7 +36,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:scaleType="fitXY"
-                android:src="@mipmap/playback_live_record_idle" />
+                android:src="@mipmap/live_last_record" />
 
             <ImageView
                 android:id="@+id/iv_screen_shot"
@@ -44,7 +44,7 @@
                 android:layout_height="24dp"
                 android:scaleType="fitXY"
                 android:layout_marginStart="@dimen/dp_40"
-                android:src="@mipmap/playback_live_screen_shot" />
+                android:src="@mipmap/live_last_take_photo" />
         </LinearLayout>
 
     </RelativeLayout>

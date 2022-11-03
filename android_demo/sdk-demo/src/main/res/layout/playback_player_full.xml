@@ -111,13 +111,13 @@
                 android:id="@+id/iv_record"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/playback_live_record_idle"/>
+                android:src="@mipmap/live_last_record"/>
 
             <ImageView
                 android:id="@+id/iv_screen_shot"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/playback_live_screen_shot"
+                android:src="@mipmap/live_last_take_photo"
                 android:layout_marginTop="100dp" />
         </LinearLayout>
 
